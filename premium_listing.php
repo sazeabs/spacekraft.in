@@ -87,8 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && (isset($_POST['submit_free']) || is
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
     $mail->Host = 'smtp.gmail.com';
-    $mail->Username = 'klokeshj5@gmail.com';
-    $mail->Password = 'nquz wzni txie rpwz';
+    $mail->Username = $_ENV['email'];
+    $mail->Password = $_ENV['password'];
     $mail->setFrom('support@spacekraft.in', 'Spacekraft');
     $mail->addAddress($email);
     $mail->isHTML(true);
