@@ -17,8 +17,8 @@ function send_mail($recipient, $subject, $message)
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->Host = 'smtp.gmail.com';
-        $mail->Username = 'klokeshj5@gmail.com';
-        $mail->Password = 'nquz wzni txie rpwz';
+        $mail->Username = $_ENV['email'];
+        $mail->Password = $_ENV['password'];
 
         $mail->isHTML(true);
         $mail->addAddress($recipient, 'Esteemed Customer');
