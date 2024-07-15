@@ -19,7 +19,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.2'
 
       - name: Check if composer.json exists
         id: check_files
@@ -35,7 +35,7 @@ jobs:
         run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: php-app
           path: release.zip
@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: php-app
 
@@ -59,14 +59,14 @@ jobs:
         run: unzip release.zip
       
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0022B5A25D2743B7BFD59E25638D9538 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BA625F33E8AA408AA3CF8571AFB5542A }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_720FFDDE73334564B65B7A3CF877D0C1 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_85A583EA44C7496EB80F2869E323494A }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A44BDB626A8541F7BDB109AC2F816040 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D446C67FFFED4FB39BBDCACC24396BBA }}
 
       - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
+        uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'spacekraft'
